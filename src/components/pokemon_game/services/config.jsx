@@ -1,0 +1,1 @@
+export const getApiPokemonUrl = path => `https://pokeapi.co/api/v2/${path}`
