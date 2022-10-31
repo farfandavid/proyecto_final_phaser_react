@@ -1,0 +1,134 @@
+.game-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.game {
+  width: 70%;
+  background-image: url('/public/assets/backgrounds/bg_pokemon.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: 'Cabin', sans-serif;
+  font-family: 'Press Start 2P', cursive;
+}
+
+.game>* {
+  user-select: none;
+}
+
+.player {
+  display: flex;
+  flex-direction: column;
+}
+
+.juego {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: lightskyblue;
+}
+
+.topscreen {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.stats {
+  background-color: antiquewhite;
+  border: 3px solid rgb(94, 94, 94);
+  width: 150px;
+  height: 45px;
+  padding: 10px;
+  border-top-left-radius: 15px;
+  border-end-end-radius: 15px;
+  margin-bottom: 0;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.stats>* {
+  color: black;
+  margin: 0;
+  padding: 0;
+  font-size: small;
+}
+
+.sprite {
+  width: 150px;
+  background-image: url('/public/assets/backgrounds/base_pokemon.png');
+}
+
+/**Barra de vida*/
+.health {
+  background-color: transparent;
+  border: 2px solid grey;
+  border-radius: 15px;
+  width: 150px;
+  height: 10px;
+  margin-bottom: 5px;
+}
+
+
+.health::-webkit-progress-bar {
+  background-color: whitesmoke;
+  border-radius: 15px;
+
+}
+
+.health::-webkit-progress-value {
+  background-color: #55D286;
+  border-style: outset;
+  border-color: white;
+  border-width: 0.4mm;
+  border-top-left-radius: 10px;
+  border-end-start-radius: 10px;
+}
+
+/*Bot Screen*/
+
+.botscreen {
+  display: flex;
+  background-color: darkslategray;
+  justify-content: center;
+  width: 100%;
+  height: 70px;
+}
+
+.whatdo {
+  background-color: #69A09F;
+  border-left: 10px solid #D2463A;
+  border-top: 3px solid #D2463A;
+  border-bottom: 3px solid #D2463A;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  margin-top: 0;
+}
+
+.ataques {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 50% 50%;
+  align-items: center;
+  justify-items: center;
+  width: 60%;
+  background-color: whitesmoke;
+  border: 7px ridge grey;
+  border-radius: 10px;
+}
+
+.ataques>p {
+  color: black;
+}
+
+/**Enemigo*/
+.enemy {
+  align-items: flex-start;
+  margin-top: 15px;
+}
