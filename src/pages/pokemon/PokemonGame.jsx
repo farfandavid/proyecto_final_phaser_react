@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getPokemon } from "../../components/pokemon_game/services/getPokemon";
+import { getPokemon, getCountPokemon } from "../../components/pokemon_game/services/getPokemon";
 import './styles/pokemon.css'
 
 function PokemonGame() {
@@ -11,10 +11,16 @@ function PokemonGame() {
     setTimeout(() => {
       Promise.allSettled([
         getPokemon(1),
-        getPokemon(1),
-      ]).then(([val1, val2]) => {
+        getCountPokemon(),
+      ]).then(([val1, count]) => {
         setPlayer(val1.value);
-        setEnemy(val2.value);
+        //setEnemy(val2.value);
+        //console.log(count.value.count);
+        //setLoading(true);
+        return getPokemon(Math.floor(Math.random() * 905) + 1);
+      }).then((enemy) => {
+        console.log(enemy);
+        setEnemy(enemy);
         setLoading(true);
       })
 
@@ -34,11 +40,11 @@ function PokemonGame() {
             <div className="enemy">
               <div className="topscreen enemy">
                 <div className="stats">
-                  <p>Bulbasor</p>
+                  <p>{String(enemy && enemy.name ? enemy.name : '?').toLocaleUpperCase()}</p>
                   <progress max={100} value={80} className="health"></progress>
                   <p>20/20</p>
                 </div>
-                <img className="sprite" alt="Sprite Player" src={player && player.sprites.back_default ? player.sprites.front_default : ''} />
+                <img className="sprite" alt="Sprite Player" src={enemy && enemy.sprites.back_default ? enemy.sprites.front_default : ''} />
               </div>
             </div>
             <div className="player">
