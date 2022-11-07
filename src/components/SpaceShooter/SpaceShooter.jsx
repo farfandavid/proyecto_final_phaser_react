@@ -1,8 +1,9 @@
 import Phaser from "phaser";
 import { useState, useEffect } from "react";
+import { Game } from "./game";
 
 //TODO Cambiar Nombre
-function NombreJuegoMain() {
+function SpaceShooter() {
   const [listo, setListo] = useState(false);
 
   useEffect(() => {
@@ -20,11 +21,11 @@ function NombreJuegoMain() {
       setListo(false);
       game.destroy(true);
     }
-  }, [listo])
+  }, [listo, Game])
 
   return (
     <div id="game-phaser"></div>
   );
 }
 
-export default NombreJuegoMain;
+export default SpaceShooter;
