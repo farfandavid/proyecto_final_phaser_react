@@ -23,6 +23,8 @@ function PokemonGame() {
 
   }, [])
 
+
+
   if (loading) {
     return (
       <div>
@@ -43,14 +45,14 @@ function PokemonGame() {
               <div className="topscreen">
                 <img className="sprite" alt="Sprite Player" src={player && player.sprites.back_default ? player.sprites.back_default : ''} />
                 <div className="stats">
-                  <p>{String(player.name).toLocaleUpperCase()}</p>
+                  <p>{String(player && player.name ? player.name : '?').toLocaleUpperCase()}</p>
                   <progress max={100} value={80} className="health"></progress>
                   <p>20/20</p>
                 </div>
               </div>
               <div className="botscreen">
                 <div className="whatdo">
-                  <p>What will {String(player.name).toLocaleUpperCase()} do?</p>
+                  <p>What will {String(player && player.name ? player.name : '?').toLocaleUpperCase()} do?</p>
                 </div>
                 <div className="ataques">
                   <p>Latigo</p>
