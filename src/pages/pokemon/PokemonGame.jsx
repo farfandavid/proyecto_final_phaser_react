@@ -17,7 +17,8 @@ function PokemonGame() {
         //setEnemy(val2.value);
         //console.log(count.value.count);
         //setLoading(true);
-        return getPokemon(Math.floor(Math.random() * 905) + 1);
+        let idRandom = Math.floor(Math.random() * 905) + 1;
+        return getPokemon(idRandom);
       }).then((enemy) => {
         console.log(enemy);
         setEnemy(enemy);
@@ -44,7 +45,7 @@ function PokemonGame() {
                   <progress max={100} value={80} className="health"></progress>
                   <p>20/20</p>
                 </div>
-                <img className="sprite" alt="Sprite Player" src={enemy && enemy.sprites.back_default ? enemy.sprites.front_default : ''} />
+                <img className="sprite" alt="Sprite Player" src={enemy && enemy.sprites.front_default ? enemy.sprites.front_default : ''} />
               </div>
             </div>
             <div className="player">
