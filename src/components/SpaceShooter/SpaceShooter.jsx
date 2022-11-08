@@ -1,6 +1,6 @@
 import Phaser from "phaser";
 import { useState, useEffect } from "react";
-import { Game } from "./game";
+import Game from "./game";
 
 //TODO Cambiar Nombre
 function SpaceShooter() {
@@ -12,6 +12,8 @@ function SpaceShooter() {
       width: 800,
       height: 600,
       parent: 'game-phaser',
+
+      scene:[Game],
     };
     const game = new Phaser.Game(config);
 
@@ -21,7 +23,7 @@ function SpaceShooter() {
       setListo(false);
       game.destroy(true);
     }
-  }, [listo, Game])
+  }, [listo])
 
   return (
     <div id="game-phaser"></div>

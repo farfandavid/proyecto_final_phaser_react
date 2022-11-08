@@ -1,14 +1,15 @@
 import Phaser from "phaser";
+import Player from "./player";
 
 export class Game extends Phaser.Scene {
 
     constructor() {
-        super({key:'game'});     
+        super({key:'Game'});     
     }
 
     preload(){
-        this.load.image('fondo', './images/background.png');
-        this.load.image('gameover', 'images/grameover1.png');
+        this.load.image('fondo', 'assets/spaceInvader/background/background.png');
+        //this.load.image('gameover', 'img/grameover1.png');
     }
 
 
@@ -16,6 +17,6 @@ export class Game extends Phaser.Scene {
         this.add.image(400, 200, 'fondo');
     }
     
-
-
 }
+
+export default Game;
