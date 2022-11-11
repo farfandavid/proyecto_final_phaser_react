@@ -1,5 +1,5 @@
 import Phaser from "phaser";
-//import Player from "./player";
+import { Puntaje } from "./Puntaje";
 
 var bullets;
 var ship;
@@ -15,6 +15,10 @@ export class Game extends Phaser.Scene {
         super({key:'Game'});     
     }
 
+    init(){
+        this.Puntaje = new Puntaje(this);
+    }
+
     preload(){
         this.load.image('fondo', 'assets/spaceInvader/background/background.png');
         this.load.image('player', 'assets/spaceInvader/sprites/Player.png');
@@ -24,6 +28,8 @@ export class Game extends Phaser.Scene {
 
     create (){
         this.add.image(400, 300, 'fondo');
+
+        this.Puntaje.create();
 
         var Bullet = new Phaser.Class({
             
@@ -119,6 +125,11 @@ export class Game extends Phaser.Scene {
              ship.setRotation(Phaser.Math.Angle.Between(mouseX, mouseY, ship.x, ship.y)- Math.PI / 2);
      }
     }
+
+    //En caso de querer usar el texto se debe poner asi:
+    //se pondria en el impacto de la bala con los enemigos.
+    //this.Puntaje.incrementoPuntos(10);
+
     //Aqui llamaremos al "Mostrar GameOver" que nos mostrara el Game Over.
     showGameOver(){
         this.scene.start('gameover');
