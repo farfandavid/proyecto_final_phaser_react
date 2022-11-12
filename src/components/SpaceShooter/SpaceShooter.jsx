@@ -17,6 +17,9 @@ function SpaceShooter() {
       parent: 'game-phaser',
 
       scene:[Game, GameOver, Win],
+      audio: {
+        disableWebAudio: true
+    }
     };
     const game = new Phaser.Game(config);
 

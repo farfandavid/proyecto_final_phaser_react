@@ -7,6 +7,7 @@ var lastFired = 0;
 var isDown = false;
 var mouseX = 0;
 var mouseY = 0;
+var music = null;
 
 
 export class Game extends Phaser.Scene {
@@ -23,11 +24,16 @@ export class Game extends Phaser.Scene {
         this.load.image('fondo', 'assets/spaceInvader/background/background.png');
         this.load.image('player', 'assets/spaceInvader/sprites/Player.png');
         this.load.image('bullet1', 'assets/spaceInvader/sprites/Bala.png');
+        this.load.audio('sfx', 'assets/spaceInvader/sonidos/musica2.mp3');
     }
 
 
     create (){
         this.add.image(400, 300, 'fondo');
+
+        this.music = this.sound.add('sfx');
+
+        music.play();
 
         this.Puntaje.create();
 
@@ -106,6 +112,23 @@ export class Game extends Phaser.Scene {
 
         });
     }
+
+    makeButton(name, x, y)
+    {
+        const button = this.add.image(x, y, 'button', 1)
+            .setInteractive();
+        button.name = name;
+        button.setScale(2, 1.5);
+
+        const text = this.add.bitmapText(x - 40, y - 8, 'nokia', name, 16);
+        text.x += (button.width - text.width) / 2;
+    }
+
+    setButtonFrame(button, frame)
+    {
+        button.frame = button.scene.textures.getFrame('button', frame);
+    }
+
 
      update(time, delta) {
         {
