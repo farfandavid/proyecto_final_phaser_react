@@ -7,8 +7,8 @@ export class Game extends Phaser.Scene {
     }
 
     preload(){
-        this.load.image('fondo', './images/background.png');
-        this.load.image('gameover', 'images/grameover1.png');
+        this.load.image('fondo', './assets/Images/background.png');
+        //this.load.image('gameover', 'images/grameover1.png');
     }
 
 
@@ -17,5 +17,5 @@ export class Game extends Phaser.Scene {
     }
     
 
-
 }
+export default Game;

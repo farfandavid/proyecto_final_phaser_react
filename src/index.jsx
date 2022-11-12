@@ -4,8 +4,6 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import PokemonGame from './pages/PokemonGame';
-import NombreJuegoMain from './components/nombre_juego_phaser/NombreJuegoMain';
-//import PokemonGame from './pages/PokemonGame';
 import './index.css'
 import DevelopersPage from './pages/DevelopersPage';
 import SpaceShooter from './components/SpaceShooter/SpaceShooter'
