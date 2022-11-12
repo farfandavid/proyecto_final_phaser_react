@@ -1,7 +1,9 @@
 import Phaser from "phaser";
 import { useState, useEffect } from "react";
 
-import { Game } from "./game";
+import Game from "./game";
+import { GameOver } from "./gameOver";
+import { Win } from "./Win";
 
 //TODO Cambiar Nombre
 function SpaceShooter() {
@@ -15,8 +17,11 @@ function SpaceShooter() {
       height: 600,
       parent: 'game-phaser',
 
-      scene: [Game],
-
+      scene:[Game, GameOver, Win],
+      pixelArt: true,
+      audio: {
+        disableWebAudio: true
+    }
     };
 
     const game = new Phaser.Game(config);
