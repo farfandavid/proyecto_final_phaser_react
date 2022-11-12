@@ -17,6 +17,7 @@ function SpaceShooter() {
       parent: 'game-phaser',
 
       scene:[Game, GameOver, Win],
+      pixelArt: true,
       audio: {
         disableWebAudio: true
     }
