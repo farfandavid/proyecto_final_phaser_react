@@ -159,7 +159,7 @@ export class Nivel2 extends Phaser.Scene {
         //en esta linea se añade una colision entre el jugador y el enemigo
         this.physics.add.overlap(ship, enemigos, this.colicionShipEnemigos, null, this);
         //en esta linea se añade una colision entre la bala y el enemigo
-        this.physics.add.overlap(bullets, enemigos, this.colicionBulletsEnemigos, null, this);
+        this.physics.add.collider(bullets, enemigos, this.colicionBulletsEnemigos, null, this);
 
         //const que funciona para cargar la escena del menu al presionar el boton 'regresar'
         const cargarEscena = (escena) => {
@@ -232,12 +232,15 @@ export class Nivel2 extends Phaser.Scene {
     // aqui tambien, una ves que la bala colisiona con el enemigo, se deactiva y destruye, tanto la bala como el enemigo y vuelven a estar disponible para aparecer 
     colicionBulletsEnemigos(Bullet, enemigo) {
 
-        Bullet.setActive(false);
-        Bullet.setVisible(false);
+        Bullet.destroy();
         enemigo.setActive(false);
         enemigo.setVisible(false);
         // con esta linea se aumenta en diez el puntaje por cada colision
         this.Puntaje.incrementoPuntos(10);
+        if (this.Puntaje = 20){
+            this.ShowWin();
+        }
+
     }
 
     // en esta parte solo se actualiza el numero de vidas que le quedan al jugador

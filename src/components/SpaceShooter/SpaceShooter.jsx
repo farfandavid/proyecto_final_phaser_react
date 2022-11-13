@@ -5,6 +5,7 @@ import { GameOver } from "./gameOver";
 import { GameOverNivel2 } from "./gameOverNivel2";
 import { Menu } from "./Menu";
 import { MenuNiveles } from "./MenuNiveles";
+import NextLevel from "./NextLevel";
 import Nivel2 from "./Nivel2";
 import { Win } from "./Win";
 
@@ -23,11 +24,11 @@ function SpaceShooter() {
         default: 'arcade',
         arcade: {
             gravity: { y: 0 },
-            debug: false
+            debug: true
         }
     },
 
-      scene:[Menu, MenuNiveles, Game, GameOver, GameOverNivel2, Win, Nivel2 ],
+      scene:[Menu, MenuNiveles, Game, GameOver, GameOverNivel2, Win, Nivel2, NextLevel ],
       pixelArt: true,
       audio: {
         disableWebAudio: true

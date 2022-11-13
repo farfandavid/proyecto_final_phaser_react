@@ -24,7 +24,7 @@ export class Game extends Phaser.Scene {
 
 
     init() {
-        this.Puntaje = new Puntaje(this);
+        this.Puntaje = new Puntaje(this)
     }
 
 
@@ -101,6 +101,7 @@ export class Game extends Phaser.Scene {
                 }
             }
 
+
         });
 
 
@@ -108,6 +109,7 @@ export class Game extends Phaser.Scene {
             classType: Bullet,
             maxSize: 50,
             runChildUpdate: true
+        
         });
         //Aqui aremos que el player se cree.
         ship = this.physics.add.image(400, 300, 'player').setDepth(1);
@@ -161,7 +163,7 @@ export class Game extends Phaser.Scene {
         this.physics.add.overlap(ship, enemigos, this.colicionShipEnemigos, null, this);
 
         //en esta linea se añade una colision entre la bala y el enemigo
-        this.physics.add.overlap(bullets, enemigos, this.colicionBulletsEnemigos, null, this);
+        this.physics.add.collider(bullets, enemigos, this.colicionBulletsEnemigos, null, this);
 
         //const que funciona para cargar la escena del menu al presionar el boton 'regresar'
         const cargarEscena = (escena) => {
@@ -183,6 +185,7 @@ export class Game extends Phaser.Scene {
         {
             //Basicamente lo que vemos aqui es la creacion de las balas y esto comprobara si el clic fue presionado, en caso de ser correcto se creara una bala.
             if (isDown && time > lastFired) {
+                
                 var bullet = bullets.get();
 
                 if (bullet) {
@@ -245,17 +248,16 @@ export class Game extends Phaser.Scene {
 
     // aqui tambien, una ves que la bala colisiona con el enemigo, se deactiva y destruye, tanto la bala como el enemigo y vuelven a estar disponible para aparecer 
     colicionBulletsEnemigos(Bullet, enemigo) {
-
-        Bullet.setActive(false);
-        Bullet.setVisible(false);
+        Bullet.destroy();
         enemigo.setActive(false);
         enemigo.setVisible(false);
         // con esta linea se aumenta en diez el puntaje por cada colision 
         this.Puntaje.incrementoPuntos(10);
-   
- 
-      
-        
+
+        if(this.puntaje >= 50)
+        {
+            this.showNextLevel(); 
+        }
 
     }
 
@@ -280,6 +282,10 @@ export class Game extends Phaser.Scene {
         this.scene.start('Win');
     }
      //Aqui llamaremos al "Mostrar Win" que nos mostrara la pantalla de win.
+
+     showNextLevel(){
+        this.scene.start('NextLevel');
+    }
    
 
 }
