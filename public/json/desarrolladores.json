@@ -12,5 +12,12 @@
         "edad": "19 años",
         "intereses": "Aprender varios lenguajes de programacion y trabajar en una empresa de videojuegos",
         "github": "https://github.com/MartinAmante"
+    },
+    {
+        "img": "image/desarrolladores/Rojas.jpeg",
+        "nombre": "Diego Rojas",
+        "edad": "20 años",
+        "intereses": "Me gusta el arte y jueguitos.",
+        "github": "https://github.com/Ezemr12"
     }
 ]

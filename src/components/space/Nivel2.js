@@ -51,9 +51,9 @@ export class Nivel2 extends Phaser.Scene {
         //Agregado de musica.
         this.music = this.sound.add('sfx');
         // //Aqui haremos que la musica se reproduzca
-        /* this.music.play({
+        this.music.play({
              loop: true
-         }); */
+         });
         //Aqui crearemos nuestra tabla de puntaje
         this.Puntaje.create();
 
