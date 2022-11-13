@@ -15,8 +15,8 @@ export class Puntaje {
     incrementoPuntos(puntos, escena) {
         this.puntaje += puntos;
         this.puntajeTexto.setText('Puntos: ' + this.puntaje);
-        if (this.puntaje >= 50) {
-            escena.start("nivel2");
+        if (this.puntaje >= 100) {
+            escena.start("Win");
         }
     }
 }

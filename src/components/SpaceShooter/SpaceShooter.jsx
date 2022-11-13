@@ -23,16 +23,15 @@ function SpaceShooter() {
       physics: {
         default: 'arcade',
         arcade: {
-            gravity: { y: 0 },
-            debug: true
+          gravity: { y: 0 }
         }
-    },
-
-      scene:[Menu, MenuNiveles, Game, GameOver, GameOverNivel2, Win, Nivel2, NextLevel ],
+      },
+      autoCenter: Phaser.Scale.CENTER_BOTH,
+      scene: [Menu, MenuNiveles, Game, GameOver, GameOverNivel2, Win, Nivel2, NextLevel],
       pixelArt: true,
       audio: {
         disableWebAudio: true
-    }
+      }
     };
 
     const game = new Phaser.Game(config);

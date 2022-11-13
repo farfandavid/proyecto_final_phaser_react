@@ -1,0 +1,14 @@
+.Ahorcado {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #151320;
+  color: white;
+  height: 80vh;
+}
+
+.Alfabeto {
+  display: flex;
+  font-size: xx-large;
+}

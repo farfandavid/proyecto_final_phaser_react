@@ -27,7 +27,7 @@ export class Nivel2 extends Phaser.Scene {
         this.Puntaje = new Puntaje(this);
     }
 
-     //Aqui cargaremos e importaremos los archivos necesarios.
+    //Aqui cargaremos e importaremos los archivos necesarios.
     preload() {
         this.load.image('fondoNivel2', 'assets/spaceInvader/background/fondoNivel2.jpg');
         this.load.image('player', 'assets/spaceInvader/sprites/Player.png');
@@ -47,7 +47,7 @@ export class Nivel2 extends Phaser.Scene {
         var regresarBoton = this.add.image(760, 40, 'regresar').setInteractive();
         regresarBoton.on('pointerdown', function () {
             cargarEscena('menu')
-          })
+        })
         //Agregado de musica.
         this.music = this.sound.add('sfx');
         // //Aqui haremos que la musica se reproduzca
@@ -141,7 +141,7 @@ export class Nivel2 extends Phaser.Scene {
 
         });
 
-         //aqui se crea un grupo de enemigos, maxSize permite que se guarde en memoria 50 enemigos
+        //aqui se crea un grupo de enemigos, maxSize permite que se guarde en memoria 50 enemigos
         enemigos = this.physics.add.group({
             defaultKey: 'enemy2',
             maxSize: 50
@@ -164,7 +164,7 @@ export class Nivel2 extends Phaser.Scene {
         //const que funciona para cargar la escena del menu al presionar el boton 'regresar'
         const cargarEscena = (escena) => {
             this.scene.start(escena)
-          }
+        }
 
     }
 
@@ -176,7 +176,8 @@ export class Nivel2 extends Phaser.Scene {
         enemigos.children.iterate(function (enemigo) {
             if (enemigo.x > 800) {
                 enemigos.killAndHide(enemigo);
-            }});
+            }
+        });
 
         {
             //Basicamente lo que vemos aqui es la creacion de las balas y esto comprobara si el clic fue presionado, en caso de ser correcto se creara una bala.
@@ -213,7 +214,7 @@ export class Nivel2 extends Phaser.Scene {
                 });
             }
         }
-     }
+    }
 
     // aqui basicamente, si el enemigo esta activo y colisiona con la nave, se deactiva y destruye y vuelve a estar disponible para aparecer 
     colicionShipEnemigos(ship, enemigo) {
@@ -222,7 +223,7 @@ export class Nivel2 extends Phaser.Scene {
             enemigo.setActive(false);
             enemigo.setVisible(false);
             // a la vida del player se le resta en uno y si llega 0 muestra la escena GameOver 
-            ship.vida --;
+            ship.vida--;
             this.actualizarTexto();
             if (ship.vida <= 0) {
                 this.showGameOver();
@@ -236,8 +237,8 @@ export class Nivel2 extends Phaser.Scene {
         enemigo.setActive(false);
         enemigo.setVisible(false);
         // con esta linea se aumenta en diez el puntaje por cada colision
-        this.Puntaje.incrementoPuntos(10);
-        if (this.Puntaje = 20){
+        this.Puntaje.incrementoPuntos(10, this.scene);
+        if (this.Puntaje >= 100) {
             this.ShowWin();
         }
 
@@ -261,8 +262,8 @@ export class Nivel2 extends Phaser.Scene {
     ShowWin() {
         this.scene.start('Win');
     }
-     //Aqui llamaremos al "Mostrar Win" que nos mostrara la pantalla de win.
-   
+    //Aqui llamaremos al "Mostrar Win" que nos mostrara la pantalla de win.
+
 
 }
 
