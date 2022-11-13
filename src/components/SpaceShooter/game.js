@@ -47,14 +47,14 @@ export class Game extends Phaser.Scene {
         var regresarBoton = this.add.image(760, 40, 'regresar').setInteractive();
         regresarBoton.on('pointerdown', function () {
             cargarEscena('menu')
-          })
+        })
 
         //Agregado de musica.
         this.music = this.sound.add('sfx');
         // //Aqui haremos que la musica se reproduzca
         /* this.music.play({
              loop: true
-         }); */ 
+         }); */
         //Aqui crearemos nuestra tabla de puntaje
         this.Puntaje.create();
 
@@ -99,6 +99,7 @@ export class Game extends Phaser.Scene {
                     this.setActive(false);
                     this.setVisible(false);
                 }
+
             }
 
 
@@ -109,7 +110,7 @@ export class Game extends Phaser.Scene {
             classType: Bullet,
             maxSize: 50,
             runChildUpdate: true
-        
+
         });
         //Aqui aremos que el player se cree.
         ship = this.physics.add.image(400, 300, 'player').setDepth(1);
@@ -143,13 +144,13 @@ export class Game extends Phaser.Scene {
             isDown = false;
 
         });
-        
+
         //aqui se crea un grupo de enemigos, maxSize permite que se guarde en memoria 50 enemigos
         enemigos = this.physics.add.group({
             defaultKey: 'enemy',
             maxSize: 50
         });
-        
+
         //se añade un evento para que los enemigos se generen segun el tiempoAparicion
         this.time.addEvent({
             delay: tiempoAparicion,
@@ -168,24 +169,26 @@ export class Game extends Phaser.Scene {
         //const que funciona para cargar la escena del menu al presionar el boton 'regresar'
         const cargarEscena = (escena) => {
             this.scene.start(escena)
-          }
+        }
 
     }
 
     update(time, delta) {
-        
+
         //aqui se incrementa en el ejeY el valor que le demos en 'velocidadCaida' a todos los hijos del gupo enemigos, 
         Phaser.Actions.IncY(enemigos.getChildren(), velocidadCaida);
+
         // se llama a cada uno de los enemigos y verifica si su posicion en Y es mayor a la del lienzo, luego elimina al enemigo y lo vulve a poner disponible para volver a aparecer
         enemigos.children.iterate(function (enemigo) {
             if (enemigo.y > 600) {
                 enemigos.killAndHide(enemigo);
-            }});
+            }
+        });
 
         {
             //Basicamente lo que vemos aqui es la creacion de las balas y esto comprobara si el clic fue presionado, en caso de ser correcto se creara una bala.
             if (isDown && time > lastFired) {
-                
+
                 var bullet = bullets.get();
 
                 if (bullet) {
@@ -236,7 +239,7 @@ export class Game extends Phaser.Scene {
             enemigo.setActive(false);
             enemigo.setVisible(false);
             // a la vida del player se le resta en uno y si llega 0 muestra la escena GameOver 
-            ship.vida --;
+            ship.vida--;
             this.actualizarTexto();
             if (ship.vida <= 0) {
                 this.showGameOver();
@@ -252,19 +255,19 @@ export class Game extends Phaser.Scene {
         enemigo.setActive(false);
         enemigo.setVisible(false);
         // con esta linea se aumenta en diez el puntaje por cada colision 
-        this.Puntaje.incrementoPuntos(10);
+        this.Puntaje.incrementoPuntos(10, this.scene);
 
-        if(this.puntaje >= 50)
-        {
-            this.showNextLevel(); 
+        if (this.puntaje <= 50) {
+
         }
 
     }
 
 
-   // en esta parte solo se actualiza el numero de vidas que le quedan al jugador
+    // en esta parte solo se actualiza el numero de vidas que le quedan al jugador
     actualizarTexto() {
         texto.setText('vida:' + ship.vida);
+
     }
 
 
@@ -281,12 +284,12 @@ export class Game extends Phaser.Scene {
     ShowWin() {
         this.scene.start('Win');
     }
-     //Aqui llamaremos al "Mostrar Win" que nos mostrara la pantalla de win.
+    //Aqui llamaremos al "Mostrar Win" que nos mostrara la pantalla de win.
 
-     showNextLevel(){
+    showNextLevel() {
         this.scene.start('NextLevel');
     }
-   
+
 
 }
 
