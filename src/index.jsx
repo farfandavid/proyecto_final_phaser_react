@@ -11,7 +11,7 @@ import Arkanoid from './pages/arkanoid/Arkanoid';
 import AhorcadoPage from './pages/ahorcado/AhorcadoPage';
 import PiedraPapelTijerasPage from './pages/piedrapapeltijeras/PiedraPapelTijerasPage';
 import DeveloperPage from './pages/developer/DeveloperPage';
-import SpaceShooter from './components/spaceShooter/SpaceShooter';
+import SpaceShooter from './components/space/SpaceShooter';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
