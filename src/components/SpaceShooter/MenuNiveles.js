@@ -6,6 +6,7 @@ export class MenuNiveles extends Phaser.Scene {
     super({ key: 'menuNiveles' });
   }
 
+  //Aqui cargaremos e importaremos los archivos necesarios.
   preload() {
     this.load.image('fondoMenu', 'assets/spaceInvader/background/fondoMenu2.png');
     this.load.image('nivel_1', 'assets/spaceInvader/background/Nivel1.png');
@@ -13,9 +14,12 @@ export class MenuNiveles extends Phaser.Scene {
     this.load.image('regresar', 'assets/spaceInvader/background/return (1).png');
   }
 
+  //Aqui los ubicaremos y crearemos.
   create() {
+    // se crea el fondo
     this.add.image(400, 300, 'fondoMenu');
 
+    // se crean 2 imagenes interactivas para el nivel1, nivel2 y otra para regresar al menu 
     var nivel_1 = this.add.sprite(400, 140, "nivel_1").setInteractive();
     nivel_1.setScale(0.3, 0.3);
 
@@ -24,6 +28,7 @@ export class MenuNiveles extends Phaser.Scene {
 
     var regresarBoton = this.add.image(40, 40, 'regresar').setInteractive();
 
+    // aqui se verifica si se presiono la imagen carga la respectiva escena
     nivel_1.on('pointerdown', function () {
       cargarEscena('Game')
     })
@@ -35,7 +40,7 @@ export class MenuNiveles extends Phaser.Scene {
       cargarEscena('menu')
     })
 
-
+    //const que funciona para cargar las escenas.
     const cargarEscena = (escena) => {
       this.scene.start(escena)
     }

@@ -29,7 +29,7 @@ export class Game extends Phaser.Scene {
 
 
 
-
+    //Aqui cargaremos e importaremos los archivos necesarios.
     preload() {
         this.load.image('fondo', 'assets/spaceInvader/background/background.png');
         this.load.image('player', 'assets/spaceInvader/sprites/Player.png');
@@ -39,18 +39,11 @@ export class Game extends Phaser.Scene {
         this.load.image('regresar', 'assets/spaceInvader/background/return (1).png');
     }
 
-
-
-
-
-
-
-
-
-
+    //Aqui los ubicaremos y crearemos.
     create() {
         this.add.image(400, 300, 'fondo');
 
+        //con esta variable se crea un boton que permite regresar al menu principal
         var regresarBoton = this.add.image(760, 40, 'regresar').setInteractive();
         regresarBoton.on('pointerdown', function () {
             cargarEscena('menu')
@@ -148,12 +141,14 @@ export class Game extends Phaser.Scene {
             isDown = false;
 
         });
-
+        
+        //aqui se crea un grupo de enemigos, maxSize permite que se guarde en memoria 50 enemigos
         enemigos = this.physics.add.group({
             defaultKey: 'enemy',
             maxSize: 50
         });
-
+        
+        //se añade un evento para que los enemigos se generen segun el tiempoAparicion
         this.time.addEvent({
             delay: tiempoAparicion,
             loop: true,
@@ -162,33 +157,28 @@ export class Game extends Phaser.Scene {
             }
         });
 
+        //en esta linea se añade una colision entre el jugador y el enemigo
         this.physics.add.overlap(ship, enemigos, this.colicionShipEnemigos, null, this);
 
+        //en esta linea se añade una colision entre la bala y el enemigo
         this.physics.add.overlap(bullets, enemigos, this.colicionBulletsEnemigos, null, this);
 
+        //const que funciona para cargar la escena del menu al presionar el boton 'regresar'
         const cargarEscena = (escena) => {
             this.scene.start(escena)
           }
 
     }
 
-
-
-
-
-
-
-
-
-
     update(time, delta) {
-
+        
+        //aqui se incrementa en el ejeY el valor que le demos en 'velocidadCaida' a todos los hijos del gupo enemigos, 
         Phaser.Actions.IncY(enemigos.getChildren(), velocidadCaida);
+        // se llama a cada uno de los enemigos y verifica si su posicion en Y es mayor a la del lienzo, luego elimina al enemigo y lo vulve a poner disponible para volver a aparecer
         enemigos.children.iterate(function (enemigo) {
             if (enemigo.y > 600) {
                 enemigos.killAndHide(enemigo);
-            }
-        })
+            }});
 
         {
             //Basicamente lo que vemos aqui es la creacion de las balas y esto comprobara si el clic fue presionado, en caso de ser correcto se creara una bala.
@@ -213,33 +203,37 @@ export class Game extends Phaser.Scene {
 
 
     GenerarEnemigos() {
+        //esta variable sacara un numero de enemigos aleatorios entre los minEnemigos y maxEnemigos
         var numeroEnemigos = Phaser.Math.Between(minEnemigos, maxEnemigos);
 
+        //por cada vez que se ejecute for, se crea un enemigo, se hace visible y se activa. 
         for (let i = 0; i < numeroEnemigos; i++) {
             var enemigo = enemigos.get();
-
             if (enemigo) {
                 enemigo.setActive(true).setVisible(true);
+                //cada enemigo comienza en y = -100 y en x= una posicion aleatoria entre 0 y el tamaño del lienzo
                 enemigo.y = -100;
                 enemigo.x = Phaser.Math.Between(0, 800);
+                // con esto verifica si hay colision entre enemigo (o sea se superponen) y se genera otra posicion asi nunca aparecen juntos
                 this.physics.add.overlap(enemigo, enemigos, (enemigoEnColicion) => {
                     enemigoEnColicion.x = Phaser.Math.Between(0, 800);
                 });
             }
         }
-            
-        }
+
+    }
 
 
 
 
-
+    // aqui basicamente, si el enemigo esta activo y colisiona con la nave, se deactiva y destruye y vuelve a estar disponible para aparecer 
     colicionShipEnemigos(ship, enemigo) {
         if (enemigo.active) {
             enemigos.killAndHide(enemigo);
             enemigo.setActive(false);
             enemigo.setVisible(false);
-            ship.vida--;
+            // a la vida del player se le resta en uno y si llega 0 muestra la escena GameOver 
+            ship.vida --;
             this.actualizarTexto();
             if (ship.vida <= 0) {
                 this.showGameOver();
@@ -249,13 +243,14 @@ export class Game extends Phaser.Scene {
 
 
 
-
+    // aqui tambien, una ves que la bala colisiona con el enemigo, se deactiva y destruye, tanto la bala como el enemigo y vuelven a estar disponible para aparecer 
     colicionBulletsEnemigos(Bullet, enemigo) {
 
         Bullet.setActive(false);
         Bullet.setVisible(false);
         enemigo.setActive(false);
         enemigo.setVisible(false);
+        // con esta linea se aumenta en diez el puntaje por cada colision 
         this.Puntaje.incrementoPuntos(10);
    
  
@@ -265,7 +260,7 @@ export class Game extends Phaser.Scene {
     }
 
 
-
+   // en esta parte solo se actualiza el numero de vidas que le quedan al jugador
     actualizarTexto() {
         texto.setText('vida:' + ship.vida);
     }

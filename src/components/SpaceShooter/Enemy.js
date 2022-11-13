@@ -14,7 +14,6 @@ export class Enemy extends Phaser.Scene {
 
     create (){
                
-        this.add.image(400, 300, 'fondo');
 
 
     }

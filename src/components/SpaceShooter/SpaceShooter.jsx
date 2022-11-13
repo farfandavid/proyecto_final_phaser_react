@@ -2,6 +2,7 @@ import Phaser from "phaser";
 import { useState, useEffect } from "react";
 import Game from "./game";
 import { GameOver } from "./gameOver";
+import { GameOverNivel2 } from "./gameOverNivel2";
 import { Menu } from "./Menu";
 import { MenuNiveles } from "./MenuNiveles";
 import Nivel2 from "./Nivel2";
@@ -26,7 +27,7 @@ function SpaceShooter() {
         }
     },
 
-      scene:[Menu, MenuNiveles, Game, GameOver, Win, Nivel2 ],
+      scene:[Menu, MenuNiveles, Game, GameOver, GameOverNivel2, Win, Nivel2 ],
       pixelArt: true,
       audio: {
         disableWebAudio: true
