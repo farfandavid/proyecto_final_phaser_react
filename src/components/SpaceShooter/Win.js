@@ -15,7 +15,7 @@ export class Win extends Phaser.Scene{
     }
 
     create(){
-        this.add.image(400,225, 'fondoNivel2');
+        this.add.image(400,300, 'fondoNivel2');
         this.RestartButton.create();
         this.GanasteImage = this.add.image(400, 125, 'Win');
         this.input.on('pointerdown',() =>{

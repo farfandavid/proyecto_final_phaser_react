@@ -258,7 +258,6 @@ export class Game extends Phaser.Scene {
         this.Puntaje.incrementoPuntos(10, this.scene);
 
         if (this.puntaje <= 50) {
-
         }
 
     }

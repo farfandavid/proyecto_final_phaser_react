@@ -236,8 +236,8 @@ export class Nivel2 extends Phaser.Scene {
         enemigo.setActive(false);
         enemigo.setVisible(false);
         // con esta linea se aumenta en diez el puntaje por cada colision
-        this.Puntaje.incrementoPuntos(10);
-        if (this.Puntaje = 20){
+        this.Puntaje.incrementoPuntos(10, this.scene);
+        if (this.Puntaje <= 50){
             this.ShowWin();
         }
 
