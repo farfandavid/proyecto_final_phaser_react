@@ -264,9 +264,8 @@ function PokemonGame() {
     )
   } else {
     return (
-      <div>
-        <h1>Pokemon</h1>
-        <h2>Cargando...</h2>
+      <div className="centrar">
+        <h2 className="text-shadow">Cargando...</h2>
       </div >
     )
 

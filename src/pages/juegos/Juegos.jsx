@@ -22,7 +22,10 @@ function Juegos() {
   const juegos = ListarJuegos();
   return (
     <div>
-      <h1>Juegos</h1>
+      <div className='centrar'>
+        <h1 className='text-shadow'>Juegos</h1>
+      </div>
+
       <div className="contenedor-juegos">
         {
           juegos.map((item) => (
