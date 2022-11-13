@@ -4,6 +4,7 @@ import Game from "./game";
 import { GameOver } from "./gameOver";
 import { Menu } from "./Menu";
 import { MenuNiveles } from "./MenuNiveles";
+import Nivel2 from "./Nivel2";
 import { Win } from "./Win";
 
 //TODO Cambiar Nombre
@@ -21,11 +22,11 @@ function SpaceShooter() {
         default: 'arcade',
         arcade: {
             gravity: { y: 0 },
-            debug: true
+            debug: false
         }
     },
 
-      scene:[Menu, MenuNiveles, Game, GameOver, Win],
+      scene:[Menu, MenuNiveles, Game, GameOver, Win, Nivel2 ],
       pixelArt: true,
       audio: {
         disableWebAudio: true

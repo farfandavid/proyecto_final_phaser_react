@@ -12,13 +12,13 @@ var texto;
 const vidaShip = 3;
 const minEnemigos = 1;
 const maxEnemigos = 2;
-const velocidadCaida = 4;
+const velocidadMovimiento = 5;
 const tiempoAparicion = 600;
 
-export class Game extends Phaser.Scene {
+export class Nivel2 extends Phaser.Scene {
 
     constructor() {
-        super({ key: 'Game' });
+        super({ key: 'nivel2' });
     }
 
     init() {
@@ -30,7 +30,7 @@ export class Game extends Phaser.Scene {
         this.load.image('player', 'assets/spaceInvader/sprites/Player.png');
         this.load.image('bullet1', 'assets/spaceInvader/sprites/Bala.png');
         this.load.audio('sfx', 'assets/spaceInvader/sonidos/musica2.mp3');
-        this.load.image('enemy', 'assets/spaceInvader/sprites/Enemigo.png');
+        this.load.image('enemy2', 'assets/spaceInvader/sprites/Enemigo2.png')
     }
 
 
@@ -41,7 +41,7 @@ export class Game extends Phaser.Scene {
         // //Aqui haremos que la musica se reproduzca
         /* this.music.play({
              loop: true
-         }); */ 
+         }); */
         //Aqui crearemos nuestra tabla de puntaje
         this.Puntaje.create();
 
@@ -130,10 +130,9 @@ export class Game extends Phaser.Scene {
         });
 
         enemigos = this.physics.add.group({
-            defaultKey: 'enemy',
+            defaultKey: 'enemy2',
             maxSize: 50
         });
-
         this.time.addEvent({
             delay: tiempoAparicion,
             loop: true,
@@ -146,16 +145,16 @@ export class Game extends Phaser.Scene {
 
         this.physics.add.overlap(bullets, enemigos, this.colicionBulletsEnemigos, null, this)
 
+
     }
 
     update(time, delta) {
 
-        Phaser.Actions.IncY(enemigos.getChildren(), velocidadCaida);
+        Phaser.Actions.IncX(enemigos.getChildren(), velocidadMovimiento);
         enemigos.children.iterate(function (enemigo) {
-            if (enemigo.y > 600) {
+            if (enemigo.x > 800) {
                 enemigos.killAndHide(enemigo);
-            }
-        })
+            }});
 
         {
             //Basicamente lo que vemos aqui es la creacion de las balas y esto comprobara si el clic fue presionado, en caso de ser correcto se creara una bala.
@@ -183,15 +182,14 @@ export class Game extends Phaser.Scene {
 
             if (enemigo) {
                 enemigo.setActive(true).setVisible(true);
-                enemigo.y = -100;
-                enemigo.x = Phaser.Math.Between(0, 800);
+                enemigo.y = Phaser.Math.Between(0, 600);
+                enemigo.x = -100;
                 this.physics.add.overlap(enemigo, enemigos, (enemigoEnColicion) => {
-                    enemigoEnColicion.x = Phaser.Math.Between(0, 800);
+                    enemigoEnColicion.y = Phaser.Math.Between(0, 600);
                 });
             }
         }
-            
-        }
+     }
 
     colicionShipEnemigos(ship, enemigo) {
         if (enemigo.active) {
@@ -211,16 +209,15 @@ export class Game extends Phaser.Scene {
         Bullet.setVisible(false);
         enemigo.setActive(false);
         enemigo.setVisible(false);
-        this.Puntaje.incrementoPuntos(10);
-   
- 
-      
         
 
+        this.Puntaje.incrementoPuntos(10);
     }
+
     actualizarTexto() {
         texto.setText('vida:' + ship.vida);
     }
+
 
 
     //En caso de querer usar el texto se debe poner asi:
@@ -239,4 +236,4 @@ export class Game extends Phaser.Scene {
 
 }
 
-export default Game;
+export default Nivel2;
