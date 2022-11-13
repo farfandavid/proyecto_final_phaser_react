@@ -5,7 +5,7 @@ import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
 import PokemonGame from './pages/PokemonGame';
 import './index.css'
-import SpaceShooter from './components/SpaceShooter/SpaceShooter'
+import SpaceShooter from './components/spaceShooter/SpaceShooter'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
