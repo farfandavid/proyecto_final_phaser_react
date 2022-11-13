@@ -20,6 +20,3 @@ export class Enemy extends Phaser.Scene {
     }
 
 }
-
-
-export default Enemy;

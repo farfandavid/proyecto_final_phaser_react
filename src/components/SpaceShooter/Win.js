@@ -18,7 +18,7 @@ export class Win extends Phaser.Scene{
         this.RestartButton.create();
         this.GanasteImage = this.add.image(400, 125, 'ganaste');
         this.input.on('pointerdown',() =>{
-            this.scene.start('Game');
+            this.scene.start('menu');
         });
     }
 }

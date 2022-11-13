@@ -15,5 +15,13 @@ export class Puntaje {
     incrementoPuntos(puntos){
         this.puntaje += puntos;
         this.puntajeTexto.setText('Puntos: ' + this.puntaje);
+        if( this.puntaje >= 2000)
+        {
+            this.ShowWin();
+        }
+    }
+    
+    ShowWin() {
+        this.scene.start('Win');
     }
 }

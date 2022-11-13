@@ -1,6 +1,5 @@
 import Phaser from "phaser";
 import { useState, useEffect } from "react";
-import Enemy from "./Enemy";
 import Game from "./game";
 import { GameOver } from "./gameOver";
 import { Menu } from "./Menu";
@@ -22,11 +21,11 @@ function SpaceShooter() {
         default: 'arcade',
         arcade: {
             gravity: { y: 0 },
-            debug: false
+            debug: true
         }
     },
 
-      scene:[Menu, MenuNiveles, Game, GameOver, Win, Enemy],
+      scene:[Menu, MenuNiveles, Game, GameOver, Win],
       pixelArt: true,
       audio: {
         disableWebAudio: true
