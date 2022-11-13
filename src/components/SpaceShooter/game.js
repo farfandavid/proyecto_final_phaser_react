@@ -7,7 +7,11 @@ var lastFired = 0;
 var isDown = false;
 var mouseX = 0;
 var mouseY = 0;
-
+var enemigos;
+const minEnemigos = 2;
+const maxEnemigos = 4;
+const velocidadCaida = 4;
+const tiempoAparicion = 600;
 
 export class Game extends Phaser.Scene {
 
@@ -24,6 +28,7 @@ export class Game extends Phaser.Scene {
         this.load.image('player', 'assets/spaceInvader/sprites/Player.png');
         this.load.image('bullet1', 'assets/spaceInvader/sprites/Bala.png');
         this.load.audio('sfx', 'assets/spaceInvader/sonidos/musica2.mp3');
+        this.load.image('enemy', 'assets/spaceInvader/sprites/Enemigo.png');
     }
 
 
@@ -32,11 +37,10 @@ export class Game extends Phaser.Scene {
         //Agregado de musica.
          this.music = this.sound.add('sfx');
         // //Aqui haremos que la musica se reproduzca
-         this.music.play({
+        /* this.music.play({
              loop: true
-         });
+         }); */
         //Aqui crearemos nuestra tabla de puntaje
-        this.Puntaje.create();
 
         var Bullet = new Phaser.Class({
             
@@ -114,9 +118,34 @@ export class Game extends Phaser.Scene {
             isDown = false;
         
         });
-        }
+
+        enemigos = this.physics.add.group({
+            defaultKey: 'enemy',
+            maxSize: 50
+        });
+
+        this.time.addEvent({
+            delay: tiempoAparicion,
+            loop: true,
+            callback: () => {
+                this.GenerarEnemigos()
+            }
+        });
+
+        this.physics.add.overlap(ship, enemigos, this.colicionShipEnemigos, null, this);
+
+    } 
         
         update(time, delta) {
+
+            Phaser.Actions.IncY(enemigos.getChildren(), velocidadCaida);
+            enemigos.children.iterate(function(enemigo){
+                if(enemigo.y > 600)
+                {
+                    enemigos.killAndHide(enemigo);
+                }
+            })
+
         {
             //Basicamente lo que vemos aqui es la creacion de las balas y esto comprobara si el clic fue presionado, en caso de ser correcto se creara una bala.
             if (isDown && time > lastFired)
@@ -133,8 +162,36 @@ export class Game extends Phaser.Scene {
             }
             //Aqui se definira la rotacion de nuestra nave dependiendo de donde apunte nuestro mouse.
              ship.setRotation(Phaser.Math.Angle.Between(mouseX, mouseY, ship.x, ship.y)- Math.PI / 2);
+
         }
-        }
+    }
+
+    GenerarEnemigos()
+    {
+        var numeroEnemigos = Phaser.Math.Between(minEnemigos, maxEnemigos);
+
+        for (let i = 0; i < numeroEnemigos; i++) {
+            var enemigo = enemigos.get();
+    
+            if(enemigo){
+                enemigo.setActive(true).setVisible(true);
+                enemigo.y = -100;
+                enemigo.x = Phaser.Math.Between(0, 800);
+                this.physics.add.overlap(enemigo, enemigos, (enemigoEnColicion) =>{
+                    enemigoEnColicion.x = Phaser.Math.Between(0, 800);
+                });
+            }
+          }
+    }
+
+    colicionShipEnemigos(ship, enemigos)
+    {
+        console.log('hola');
+
+
+
+    }
+
         
         //En caso de querer usar el texto se debe poner asi:
         //se pondria en el impacto de la bala con los enemigos.

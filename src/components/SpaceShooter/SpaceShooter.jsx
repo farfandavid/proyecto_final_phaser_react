@@ -1,8 +1,10 @@
 import Phaser from "phaser";
 import { useState, useEffect } from "react";
-
+import Enemy from "./Enemy";
 import Game from "./game";
 import { GameOver } from "./gameOver";
+import { Menu } from "./Menu";
+import { MenuNiveles } from "./MenuNiveles";
 import { Win } from "./Win";
 
 //TODO Cambiar Nombre
@@ -16,8 +18,15 @@ function SpaceShooter() {
       width: 800,
       height: 600,
       parent: 'game-phaser',
+      physics: {
+        default: 'arcade',
+        arcade: {
+            gravity: { y: 0 },
+            debug: false
+        }
+    },
 
-      scene:[Game, GameOver, Win],
+      scene:[Menu, MenuNiveles, Game, GameOver, Win, Enemy],
       pixelArt: true,
       audio: {
         disableWebAudio: true
