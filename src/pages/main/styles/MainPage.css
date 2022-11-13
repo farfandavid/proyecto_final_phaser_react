@@ -1,0 +1,34 @@
+.centrar {
+  display: flex;
+  justify-content: center;
+}
+
+.boton {
+  display: flex;
+  color: white;
+  margin: 2%;
+  text-decoration: none;
+  font-size: 25px;
+  width: 100px;
+  background-color: #151320;
+  box-shadow: inset 0 0 5px rgb(199, 24, 97), 0 0 5px rgb(199, 24, 97);
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.boton:hover {
+  background: rgb(199, 24, 97);
+  box-shadow: 0 0 10px rgb(199, 24, 97), 0 0 40px rgb(199, 24, 97), 0 0 80px rgb(199, 24, 97);
+}
+
+.MenuEstilo {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  margin-top: 12%;
+  color: rgb(255, 255, 255);
+  text-shadow: 0 0 5px rgb(199, 24, 97), 0 0 15px rgb(199, 24, 97), 0 0 30px rgb(199, 24, 97), 0 0 5px rgb(199, 24, 97);
+
+}

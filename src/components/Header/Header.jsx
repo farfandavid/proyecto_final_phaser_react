@@ -1,21 +1,18 @@
 import { Link } from 'react-router-dom';
+import './styles/Header.css'
 
 function Header() {
   return (
-    <header className="main-header clearfix" >
-      <div className="logo" >
-        <p href="#"><em>grupo</em> 13</p>
-      </div >
-      <a href="#menu" className="menu-link"><i className="fa fa-bars"></i></a>
-      <nav id="menu" className="main-nav" role="navigation">
-        <ul className="main-menu">
-          <li><Link to="/">Inicio</Link></li>
-          <li><Link to="/Juegos">Juegos</Link></li>
-          <li className="has-submenu"><Link to="/Developer">Desarrolladores</Link>
-          </li>
-        </ul>
-      </nav>
-    </header >
+    <header className='top-header'>
+      <div className='menu'>
+        <h1 className='titulo'>Grupo 13</h1>
+        <div className='caja'>
+          <Link className='link' to="/"><p>Inicio</p></Link>
+          <Link className='link' to="/juegos"><p>Juegos</p></Link>
+          <Link className='link' to="/Rojas"><p>Desarrolladores</p></Link>
+        </div>
+      </div>
+    </header>
   );
 }
 

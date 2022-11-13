@@ -7,7 +7,7 @@ function AtackComp({ atacando, character, atacar, cambiarContricante, cambiarPok
         <p onClick={atacar}>Attack</p>
         <p onClick={cambiarPokemon}>Cambiar Pokemon</p>
         <p onClick={cambiarContricante}>Cambiar Contricante</p>
-        <p>Recargar</p>
+        <p onClick={() => window.location.reload()}>Recargar</p>
       </div>
     )
   }

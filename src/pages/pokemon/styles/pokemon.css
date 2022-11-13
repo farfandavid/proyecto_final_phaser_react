@@ -18,6 +18,9 @@
   user-select: none;
 }
 
+
+
+
 .player {
   display: flex;
   flex-direction: column;
@@ -60,9 +63,15 @@
   font-size: small;
 }
 
+/*Sprite*/
+
 .sprite {
   width: 150px;
   background-image: url('/public/assets/backgrounds/base_pokemon.png');
+}
+
+.take-damage {
+  filter: invert();
 }
 
 /**Barra de vida*/
