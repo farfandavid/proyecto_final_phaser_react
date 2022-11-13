@@ -254,7 +254,7 @@ export class Game extends Phaser.Scene {
         // con esta linea se aumenta en diez el puntaje por cada colision 
         this.Puntaje.incrementoPuntos(10);
 
-        if(this.puntaje >= 50)
+        if(this.puntaje = 50)
         {
             this.showNextLevel(); 
         }
