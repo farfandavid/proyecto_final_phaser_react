@@ -19,7 +19,7 @@ export class GameOver extends Phaser.Scene{
         this.gameoverImage = this.add.image(400, 125, 'gameover');
         //en caso de perder se mostrara la pantalla de gameover y si se da un clic se recargara nuevamente la escena del juego.
         this.input.on('pointerdown',() =>{
-            this.scene.start('Game');
+            this.scene.start('menu');
         });
     }
 

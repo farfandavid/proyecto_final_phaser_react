@@ -21,9 +21,14 @@ export class Game extends Phaser.Scene {
         super({ key: 'Game' });
     }
 
+
+
     init() {
         this.Puntaje = new Puntaje(this);
     }
+
+
+
 
     preload() {
         this.load.image('fondo', 'assets/spaceInvader/background/background.png');
@@ -31,11 +36,26 @@ export class Game extends Phaser.Scene {
         this.load.image('bullet1', 'assets/spaceInvader/sprites/Bala.png');
         this.load.audio('sfx', 'assets/spaceInvader/sonidos/musica2.mp3');
         this.load.image('enemy', 'assets/spaceInvader/sprites/Enemigo.png');
+        this.load.image('regresar', 'assets/spaceInvader/background/return (1).png');
     }
+
+
+
+
+
+
+
+
 
 
     create() {
         this.add.image(400, 300, 'fondo');
+
+        var regresarBoton = this.add.image(760, 40, 'regresar').setInteractive();
+        regresarBoton.on('pointerdown', function () {
+            cargarEscena('menu')
+          })
+
         //Agregado de musica.
         this.music = this.sound.add('sfx');
         // //Aqui haremos que la musica se reproduzca
@@ -144,9 +164,22 @@ export class Game extends Phaser.Scene {
 
         this.physics.add.overlap(ship, enemigos, this.colicionShipEnemigos, null, this);
 
-        this.physics.add.overlap(bullets, enemigos, this.colicionBulletsEnemigos, null, this)
+        this.physics.add.overlap(bullets, enemigos, this.colicionBulletsEnemigos, null, this);
+
+        const cargarEscena = (escena) => {
+            this.scene.start(escena)
+          }
 
     }
+
+
+
+
+
+
+
+
+
 
     update(time, delta) {
 
@@ -175,6 +208,10 @@ export class Game extends Phaser.Scene {
         }
     }
 
+
+
+
+
     GenerarEnemigos() {
         var numeroEnemigos = Phaser.Math.Between(minEnemigos, maxEnemigos);
 
@@ -193,6 +230,10 @@ export class Game extends Phaser.Scene {
             
         }
 
+
+
+
+
     colicionShipEnemigos(ship, enemigo) {
         if (enemigo.active) {
             enemigos.killAndHide(enemigo);
@@ -205,6 +246,10 @@ export class Game extends Phaser.Scene {
             }
         }
     }
+
+
+
+
     colicionBulletsEnemigos(Bullet, enemigo) {
 
         Bullet.setActive(false);
@@ -218,6 +263,9 @@ export class Game extends Phaser.Scene {
         
 
     }
+
+
+
     actualizarTexto() {
         texto.setText('vida:' + ship.vida);
     }
@@ -231,6 +279,8 @@ export class Game extends Phaser.Scene {
     showGameOver() {
         this.scene.start('gameover');
     }
+
+
     ShowWin() {
         this.scene.start('Win');
     }

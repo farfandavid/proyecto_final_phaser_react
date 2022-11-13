@@ -21,21 +21,38 @@ export class Nivel2 extends Phaser.Scene {
         super({ key: 'nivel2' });
     }
 
+
+
     init() {
         this.Puntaje = new Puntaje(this);
     }
 
+
+
     preload() {
-        this.load.image('fondo', 'assets/spaceInvader/background/background.png');
+        this.load.image('fondoNivel2', 'assets/spaceInvader/background/fondoNivel2.jpg');
         this.load.image('player', 'assets/spaceInvader/sprites/Player.png');
         this.load.image('bullet1', 'assets/spaceInvader/sprites/Bala.png');
         this.load.audio('sfx', 'assets/spaceInvader/sonidos/musica2.mp3');
-        this.load.image('enemy2', 'assets/spaceInvader/sprites/Enemigo2.png')
+        this.load.image('enemy2', 'assets/spaceInvader/sprites/Enemigo2.png');
+        this.load.image('regresar', 'assets/spaceInvader/background/return (1).png');
     }
 
 
+
+
+
+
+
+
+
     create() {
-        this.add.image(400, 300, 'fondo');
+        this.add.image(400, 300, 'fondoNivel2');
+
+        var regresarBoton = this.add.image(760, 40, 'regresar').setInteractive();
+        regresarBoton.on('pointerdown', function () {
+            cargarEscena('menu')
+          })
         //Agregado de musica.
         this.music = this.sound.add('sfx');
         // //Aqui haremos que la musica se reproduzca
@@ -143,10 +160,22 @@ export class Nivel2 extends Phaser.Scene {
 
         this.physics.add.overlap(ship, enemigos, this.colicionShipEnemigos, null, this);
 
-        this.physics.add.overlap(bullets, enemigos, this.colicionBulletsEnemigos, null, this)
+        this.physics.add.overlap(bullets, enemigos, this.colicionBulletsEnemigos, null, this);
 
+        const cargarEscena = (escena) => {
+            this.scene.start(escena)
+          }
 
     }
+
+
+
+
+
+
+
+
+
 
     update(time, delta) {
 
