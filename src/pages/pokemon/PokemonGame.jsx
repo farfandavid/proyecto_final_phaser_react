@@ -117,6 +117,7 @@ function PokemonGame() {
 
   useEffect(() => {
     //Reproduce la lista de musica
+    Howler.stop();
     soundBattle.play();
     fetchPokemons();
   }, [])
@@ -217,7 +218,10 @@ function PokemonGame() {
   if (loading) {
     return (
       <div>
-        <h1>Pokemon</h1>
+        <div className="centrar">
+          <h1 className="text-shadow">Pokemon</h1>
+        </div>
+
         <div className="game-content">
           <div className="game">
             <div className="enemy">

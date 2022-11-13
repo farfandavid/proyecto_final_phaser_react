@@ -1,0 +1,16 @@
+[
+    {
+        "img": "image/desarrolladores/desarrollador-fdd.png",
+        "nombre": "David Farfan",
+        "edad": "25 años",
+        "intereses": "Crecer en la industria del software",
+        "github": "https://github.com/farfandavid"
+    },
+    {
+        "img": "image/desarrolladores/Desarrollador.png",
+        "nombre": "Martin Amante",
+        "edad": "19 años",
+        "intereses": "Aprender varios lenguajes de programacion y trabajar en una empresa de videojuegos",
+        "github": "https://github.com/MartinAmante"
+    }
+]

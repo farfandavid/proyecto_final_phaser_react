@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "link": "/pokemon",
+        "titulo": "Pokemon",
+        "imagen": "image/juego-pokemon.png"
+    },
+    {
+        "id": 2,
+        "link": "/arkanoid",
+        "titulo": "Arkanoid",
+        "imagen": "image/juego-arkanoid.png"
+    },
+    {
+        "id": 3,
+        "link": "/ahorcado",
+        "titulo": "Ahorcado",
+        "imagen": "image/juego-ahorcado.png"
+    },
+    {
+        "id": 4,
+        "link": "/piedrapapeltijeras",
+        "titulo": "Piedra Papel Tijera",
+        "imagen": "image/juego-piedrapapeltijeras.png"
+    },
+    {
+        "id": 5,
+        "link": "/asteroid",
+        "titulo": "Asteroid",
+        "imagen": "image/juego-asteroid.png"
+    }
+]

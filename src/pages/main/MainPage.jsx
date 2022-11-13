@@ -1,7 +1,12 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './styles/MainPage.css'
+import { Howler } from 'howler';
 
 function MainPage() {
+  useEffect(() => {
+    Howler.stop();
+  }, []);
   return (
     /** fragment que permite devolver mas de un elemento, devuelve un <h2> con el nombre de nuestro grupo, una etiqueta <div> que es un boton que permite acceder al juego y un <h5>con el nombre de la materia. Hay algunas etiquetas div para poder darle diferentes estilos en CSS   */
     <>
